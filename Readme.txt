@@ -1,2 +1,0 @@
-HackDavis is lit
-
