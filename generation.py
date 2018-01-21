@@ -2,8 +2,8 @@ from random import *
 import itertools
 
 def generate(problemNumber):
-    p= open("Problems.txt","w+")
-    a= open("Answers.txt","w+")
+    p= open("static/Problems.txt","w+")
+    a= open("staticAnswers.txt","w+")
     for j in range(0, problemNumber):
         argNumber = randint(2,4)
         s = ""

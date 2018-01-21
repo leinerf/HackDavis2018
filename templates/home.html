@@ -1,8 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="home">
-    <h1>My Homepage</h1>
-    <h3>My Students</h3>
+	<div class="jumbotron">
+		<h1>Homepage</h1>
+    
+    <h4> Class Overview</h4>
+    <ul>
+        <li>20% of the class are performing below average in reading and writing</li>
+        <li>80% of the students are proficient at addition</li>
+        <li>10% of the students are above average in multiplication</li>
+    </ul>
+	</div>
+    
    	<canvas id="Class Statistics" style="width:5%"></canvas>
 	<script>//write in the script
 	    var ctx = document.getElementById("Class Statistics");

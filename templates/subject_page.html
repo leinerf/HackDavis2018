@@ -1,8 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-
-    <h1>{{student}}</h1>
-    
+<div class="jumbotron">
+    <h1>{{student}} ID#2932200</h1>
+    <hr>
+    <h4>Overview</h4>
+    <ul>
+        <li>below average in Division</li>
+        <li>proficient in Addition</li>
+        <li>average in Multiplication</li>
+        <li>abouve average in Subtraction</li>
+    </ul>
+</div>
 
 <p><center>{{student}}'s Progression</p></center>
 <canvas id="Progression" style="width:5%"></canvas>
@@ -14,12 +22,6 @@
             "fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}]},
             "options":{}});
     </script>
-    <br>
-    <div class="jumbotron">
-        <h2> Overall Performance </h2>
-        <p> According to the above chart, {{student}}'s progression has steadily increased despite poor performance in the month of August. </p>    
-    </div>
-    <br>
 
 
     <p><center>{{student}}'s Priorities</p></center>
@@ -39,7 +41,13 @@
     "data":data, //30: History, 50: Math, 100: English
     "backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"]}]}});
     </script>
-
+    <p> 1. Print out practice problems to test your students. <br>
+    2. Record your data so it'll be displayed onto the above charts! </p>
+    <br>
+     <a href="{{url_for('static',filename='Problems.txt')}}" download="Problems.txt" target="_blank" class="button" >Practice Problems</a>
+    <a href="{{url_for('static',filename='Answers.txt')}}" download="Answers.txt" target="_blank" class="button" >Answer Key</a>
+     
+    <a href="/students/Briana/course/Math/practice/" download="Answers.txt" target="_blank" class="button" >Record Quiz Answers</a>
 
   <!--   <form action="/students">
     	<input type="button" name="button">
