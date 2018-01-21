@@ -5,15 +5,8 @@ from flask import Flask, render_template, redirect, url_for
 app = Flask(__name__)
 app.debug = True
 #db = client['test-database']
-def createPost(math,english,science):
-	post = {
-
-	 "Math": math, 
-	 "English": english,
-	 "Science": science
-	}
-	return post 
-    
+def createPost(**kwargs):
+	return kwargs    
 
 #client = MongoClient('mongodb://localhost:27017/')
 
@@ -36,15 +29,22 @@ def graph():
 
 @app.route('/students/<student>', methods=['GET'])
 def student(student):
-	subject_grades = createPost(40,30,30)
+	subject_grades = {"Math":43,"Englise":37,"Science":10}
 	links = [{"name":"Math","link":"/students/"+student + "/Math"},{"name":"English","link":"/students/"+student + "/English"},{"name":"Science","link":"/students/"+student + "/Science"}]
 	return render_template("student-profile.html",student= student, items= links,progress = subject_grades)
 
 @app.route('/students/<student>/<course>', methods=['GET'])
 def studentCourses(student,course):
-	subject_grades = createPost(23,32,32)
-	links = [{"name":"Adding","link":"/students/"+student + "/"+ course + "/Adding"},{"name":"Subtracting","link":"/students/"+student + "/"+ course + "/Subtracting"},{"name":"Division","link":"/students/"+student + "/"+ course + "/Division"},{"name":"Multiplication","link":"/students/"+student + "/"+ course + "/Multiplication"}]
-	return render_template("student-profile.html",student= student, items= links,progress = subject_grades)
+		if(course == "Math"):
+			subject_grades = {"Adding":23,"Subtracting":37,"Multiplication":10, "Division":30}
+			links = [{"name":"Adding","link":"/students/"+student + "/"+ course + "/Adding"},{"name":"Subtracting","link":"/students/"+student + "/"+ course + "/Subtracting"},{"name":"Division","link":"/students/"+student + "/"+ course + "/Division"},{"name":"Multiplication","link":"/students/"+student + "/"+ course + "/Multiplication"}]
+			return render_template("student-profile.html",student= student, items= links,progress = subject_grades)
+		elif(course == "English"):
+			subject_grades = {"Grammar":23,"Comprehension":37}
+			links = [{"name":"Grammar","link":"/students/"+student + "/"+ course + "/Grammar"},
+			{"name":"Comprehension","link":"/students/"+student + "/"+ course + "/Comprehension"}]
+			return render_template("student-profile.html",student= student, items= links,progress = subject_grades)
+		return redirect(url_for('student'))
 
 
 
