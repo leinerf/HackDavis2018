@@ -1,6 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, request
 from generation import generate
 from dictGenerator import generateDict
+from pymongo import MongoClient
+from  pprint import pprint
+from pieGenerator import pieGenerator
+client = MongoClient('mongodb://localhost:27017/')
+db = client['test-database']
+posts = db.posts
+
 #from pymongo import MongoClient
 #import pprint
 
@@ -31,13 +38,17 @@ def graph():
 
 @app.route('/students/<student>', methods=['GET'])
 def student(student):
-	subject_grades = {"Math":43,"English":37,"Science":10}
+	person  = posts.find_one({"Name":student})
+	pprint(person)
+	m,e,s = pieGenerator(person['Math'],person['English'], person['Science'])
+	subject_grades = {"Math":m,"English":e,"Science":s}
 	links = [{"name":"Math","link":"/students/"+student + "/course/Math"},{"name":"English","link":"/students/"+student + "/course/English"},{"name":"Science","link":"/students/"+student + "/course/Science"}]
 	return render_template("student-profile.html",student= student, items= links,progress = subject_grades,title=student)
 
 @app.route('/students/<student>/course/<course>', methods=['GET'])
 def studentCourses(student,course):
 		generate(10)
+
 		if(course == "Math"):
 			subject_grades = {"Adding":23,"Subtracting":37,"Multiplication":10, "Division":30}
 			links = [{"name":"Adding","link":"/students/"+student + "/course/"+ course + "/Adding"},{"name":"Subtracting","link":"/students/"+student + "/course/"+ course + "/Subtracting"},{"name":"Division","link":"/students/"+student + "/course/"+ course + "/Division"},{"name":"Multiplication","link":"/students/"+student + "/course/"+ course + "/Multiplication"}]
@@ -61,11 +72,24 @@ def getResult(student,course):
 	total = len(request.form)
 	count = 0
 	for i,j in request.form.items():
-		if(eval(i) == eval(j)):
+		if(eval(i) != eval(j)):
 			count+=1
-	percent = count/total
-	return "got right {}".format(percent) 
-
+	person = posts.find_one({"Name":student})
+	print(person["Math"])
+	person["Math"].append({"num":count,'denom':total})
+	math = person["Math"]
+	print(person["Math"])
+	db.Employees.update_one(
+        {"id": person['_id']},
+        {
+        "$set": {
+            "Math":math
+            
+        }
+        }
+    )
+	
+	return redirect(url_for('home'))
 
 
 
