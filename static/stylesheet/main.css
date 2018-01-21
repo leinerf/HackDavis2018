@@ -1,0 +1,64 @@
+html,body{
+	padding: 0;
+	margin: 0;
+    
+}
+
+
+
+.navbar {
+	position: absolute;
+	top: 0;
+	width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:#969696;
+}
+
+ul.navbar li {
+    font-size:1.2em;
+    float: left;
+}
+
+ul.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 1.3em;
+    text-decoration: none;
+}
+
+
+.sidebar {
+    position: absolute;
+    left: 0;
+    top:55px;
+
+    width: 10%;
+    height: 100%;
+    background: black;
+    margin:0;
+    padding:0;
+}
+ul.sidebar li {
+
+}
+
+ul.sidebar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 1.3em;
+    text-decoration: none;
+    
+}
+
+
+.container{
+    margin-top: 10%;
+    margin-left: 20%;
+}

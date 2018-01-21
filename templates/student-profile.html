@@ -3,5 +3,8 @@
 <div class="home">
     <h1>{{student}}</h1>
     <p>This is a test website</p>
+    {% for item in progress %}
+        <li >{{ item }}: {{  progress[item] }} </li>
+    {% endfor %}
 </div>
 {% endblock %}
