@@ -4,6 +4,8 @@ from dictGenerator import generateDict
 from pymongo import MongoClient
 from  pprint import pprint
 from pieGenerator import pieGenerator
+
+
 client = MongoClient('mongodb://localhost:27017/')
 db = client['test-database']
 posts = db.posts
@@ -79,14 +81,14 @@ def getResult(student,course):
 	person["Math"].append({"num":count,'denom':total})
 	math = person["Math"]
 	print(person["Math"])
-	db.Employees.update_one(
-        {"id": person['_id']},
+	db.posts.update_one(
+        {"Name": student},
         {
         "$set": {
             "Math":math
             
         }
-        }
+        },upsert=False
     )
 	
 	return redirect(url_for('home'))
