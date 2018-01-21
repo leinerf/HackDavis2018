@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action = "/students/{{student}}/course/{{course}}/practice/" method="POST">
+<!-- Question  1: <input type="text" value = ""><br>
+Question  2: <input type="text" value = ""><br>
+Question  3: <input type="text" value = ""><br>
+Question  4: <input type="text" value = ""><br>
+Question  5: <input type="text" value = ""><br>
+Question  6: <input type="text" value = ""><br>
+Question  7: <input type="text" value = ""><br>
+Question  8: <input type="text" value = ""><br>
+Question  9: <input type="text" value = ""><br>
+Question 10: <input type="text" value = ""><br> -->
+{% for item in problems %}
+	{{item.leftHand}}:  <input type="text" name="{{item.leftHand}}"><br>
+{% endfor %}
+<input type="submit" value = "Submit">
+<form>
+
+{% endblock %}

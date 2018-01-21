@@ -5,10 +5,10 @@
     <hr>
     <h4>Overview</h4>
     <ul>
-        <li>below average in Division</li>
-        <li>proficient in Addition</li>
-        <li>average in Multiplication</li>
-        <li>abouve average in Subtraction</li>
+        <li>Below average in Division</li>
+        <li>Proficient in Addition</li>
+        <li>Average in Multiplication</li>
+        <li>Above average in Subtraction</li>
     </ul>
 </div>
 
@@ -42,15 +42,14 @@
     "backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"]}]}});
     </script>
     <p> 1. Print out practice problems to test your students. <br>
-    2. Record your data so it'll be displayed onto the above charts! </p>
+        2. Record your data so it'll be displayed onto the above charts! </p>
     <br>
-     <a href="{{url_for('static',filename='Problems.txt')}}" download="Problems.txt" target="_blank" class="button" >Practice Problems</a>
+    <a href="{{url_for('static',filename='Problems.txt')}}" download="Problems.txt" target="_blank" class="button" >Practice Problems</a>
     <a href="{{url_for('static',filename='Answers.txt')}}" download="Answers.txt" target="_blank" class="button" >Answer Key</a>
-     
-    <a href="/students/Briana/course/Math/practice/" download="Answers.txt" target="_blank" class="button" >Record Quiz Answers</a>
 
-  <!--   <form action="/students">
-    	<input type="button" name="button">
+    <a href="/students/{{student}}/course/{{course}}/practice"  class="button" >Record Quiz Answers</a>
+ <!--
+    <form action = "/Record Quiz Answers"> 
     </form>
- -->
+-->
 {% endblock %}

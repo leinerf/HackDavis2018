@@ -12,12 +12,12 @@
   <body>
     <ul class="navbar">
       <li>
-        {% if (title != "Homepage") and (course != True) %}
+        {% if (title != "Homepage") and (course == undefined ) %}
             <a href="/">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
           </a>
         
-        {% elif( course == True )%}
+        {% elif( course != undefined)%}
         <a href="/students/{{student}}">
           <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </a>

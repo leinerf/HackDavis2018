@@ -1,10 +1,12 @@
 from random import *
 import itertools
 
-def generate(problemNumber):
-    p= open("static/Problems.txt","w+")
-    a= open("static/Answers.txt","w+")
+def generateDict(problemNumber):
+#    p= open("Problems.txt","w+")
+#    a= open("Answers.txt","w+")
+    problemList = []
     for j in range(0, problemNumber):
+        problems = {}
         argNumber = randint(2,4)
         s = ""
         k = ""
@@ -17,8 +19,10 @@ def generate(problemNumber):
             s += str(operand)
             if i == argNumber-1:
                 answer = eval(s)
-                s += " =__\n"
-                a.write(str(j+1) + ". " + str(answer) +"\n")
+                problems["leftHand"] = s
+                problems["rightHand"] = answer
+                problemList.append(problems)
+  #              a.write(str(j+1) + ". " + str(answer) +"\n")
                 break
             if opearator == 0:
                 s+= " + "
@@ -26,12 +30,14 @@ def generate(problemNumber):
                 s+= " * "
             if opearator == 2:
                 s+= " - "
-        p.write(s)
-    p.close()
-    a.close()
+    return problemList
+ #       p.write(s)
+        
+ #   p.close()
+ #   a.close()
     #for i in range(0,problemNumber):
     #    a = randint(1,20)
     #    b = randint(1,20)
     #    s = str(a) + " * " + str(b) + " =__\n"
     #    f.write(s)
-generate(10)
+
