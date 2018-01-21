@@ -3,6 +3,45 @@
 <div class="home">
     <h1>My Homepage</h1>
     <h3>My Students</h3>
-   
+   	<canvas id="Class Statistics" style="width:5%"></canvas>
+	<script>//write in the script
+	    var ctx = document.getElementById("Class Statistics");
+	    var myChart = new Chart(ctx, {
+	        type: 'bar',
+	        data: {
+	            labels: ["History", "Math", "English"], //Red: History, Blue: Math, Yellow: English 
+	            datasets: [{
+	                label: 'Class Statistics',
+	                data: [70, 20, 80], //70: History, 20: Math, 80: English
+	                backgroundColor: [
+	                    'rgba(255, 99, 132, 0.2)',
+	                    'rgba(54, 162, 235, 0.2)',
+	                    'rgba(255, 206, 86, 0.2)',
+	                    'rgba(75, 192, 192, 0.2)',
+	                    'rgba(153, 102, 255, 0.2)',
+	                    'rgba(255, 159, 64, 0.2)'
+	                ],
+	                borderColor: [
+	                    'rgba(255,99,132,1)',
+	                    'rgba(54, 162, 235, 1)',
+	                    'rgba(255, 206, 86, 1)',
+	                    'rgba(75, 192, 192, 1)',
+	                    'rgba(153, 102, 255, 1)',
+	                    'rgba(255, 159, 64, 1)'
+	                ],
+	                borderWidth: 1
+	            }]
+	        },
+	        options: {
+	            scales: {
+	                yAxes: [{
+	                    ticks: {
+	                        beginAtZero:true
+	                    }
+	                }]
+	            }
+	        }
+	    });
+	</script>    
 </div>
 {% endblock %}

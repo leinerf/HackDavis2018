@@ -1,10 +1,38 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="home">
+
     <h1>{{student}}</h1>
-    <p>This is a test website</p>
-    {% for item in progress %}
-        <li >{{ item }}: {{  progress[item] }} </li>
-    {% endfor %}
-</div>
+    
+
+<p><center>{{student}}'s Progression</p></center>
+<canvas id="Progression" style="width:5%"></canvas>
+    <script>
+        new Chart(document.getElementById("Progression"),
+            {"type":"line","data":
+            {"labels":["January","February","March","April","May","June","July","August","September","October","November","December"], //Months 
+            "datasets":[{"label":"{{student}}'s Progression","data":[65,59,80,81,56,55,40,20,25,55,72,90], //Data in correlation with months 
+            "fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}]},
+            "options":{}});
+    </script>
+
+
+    <p><center>{{student}}'s Stats</p></center>
+    <canvas id="Stats" style="width:5%"></canvas>
+    <script>
+    	data = []
+    	labels = []
+    	{% for item in progress %}
+    		labels.push("{{item}}")
+    		data.push(Number("{{progress[item]}}"))
+    	{% endfor %}
+    	console.log("{{student}}")
+   new Chart(document.getElementById("Stats"),{"type":"doughnut",
+    "data":{"labels":labels, //Red: History, Blue: Math, Yellow: English
+    "datasets":[{"label":"My First Dataset",
+    "data":data, //30: History, 50: Math, 100: English
+    "backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"]}]}});
+    </script>
+    <form action="/students">
+    	<input type="button" name="button">
+    </form>
 {% endblock %}

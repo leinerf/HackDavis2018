@@ -36,7 +36,7 @@ def graph():
 
 @app.route('/students/<student>', methods=['GET'])
 def student(student):
-	subject_grades = createPost(23,32,32)
+	subject_grades = createPost(40,30,30)
 	links = [{"name":"Math","link":"/students/"+student + "/Math"},{"name":"English","link":"/students/"+student + "/English"},{"name":"Science","link":"/students/"+student + "/Science"}]
 	return render_template("student-profile.html",student= student, items= links,progress = subject_grades)
 
@@ -51,6 +51,8 @@ def studentCourses(student,course):
 @app.route('/students/<student>/<course>/<subject>', methods=['GET'])
 def studentSubjects(student,course,subject):
 	return "{} {} {} ".format(student,course,subject)
+
+
 
 if __name__ == '__main__':
     app.run()

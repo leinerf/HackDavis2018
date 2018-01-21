@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>example</title>
+	<script  src="{{url_for('static',filename='canvas/analytics.js')}}"></script>
+	 
+     <script src="{{url_for('static',filename='canvas/Chart.bundle.js')}}""></script>
+    <script src="{{url_for('static',filename='canvas/utils.js')}}"></script>
+</head>
+<body>
+<p><center>Overall Class Stats</p></center>
+<canvas id="Class Statistics" ></canvas>
+<script>//write in the script
+    var ctx = document.getElementById("Class Statistics");
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["History", "Math", "English"], //Red: History, Blue: Math, Yellow: English 
+            datasets: [{
+                label: 'Class Statistics',
+                data: [70, 20, 80], //70: History, 20: Math, 80: English
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+</script>    
+</div> 
+
+
+<p><center>Student's Progression</p></center>
+<canvas id="Progression" style="width:5%"></canvas>
+    <script>
+        new Chart(document.getElementById("Progression"),
+            {"type":"line","data":
+            {"labels":["January","February","March","April","May","June","July","August","September","October","November","December"], //Months 
+            "datasets":[{"label":"Student's Progression","data":[65,59,80,81,56,55,40,20,25,55,72,90], //Data in correlation with months 
+            "fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}]},
+            "options":{}});
+    </script>
+
+
+    <p><center>Subjects To Improve On</p></center>
+    <canvas id="<Enter student name's> Stats" style="width:5%"></canvas>
+    <script>
+   new Chart(document.getElementById("<Enter student name's> Stats"),{"type":"doughnut",
+    "data":{"labels":["History","Math","English"], //Red: History, Blue: Math, Yellow: English
+    "datasets":[{"label":"My First Dataset",
+    "data":[30,50,100], //30: History, 50: Math, 100: English
+    "backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"]}]}});
+    </script>
+</body>
+</html>
